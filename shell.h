@@ -14,6 +14,9 @@
 #define END_OF_FILE -2
 #define EXIT -3
 
+void *_realloc(void *ptr, unsigned int prev_size, unsigned int new_size);
+void assign_lineptr(char **lineptr, size_t *n, char *buffer, size_t b);
+ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 
 
 
