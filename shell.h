@@ -19,7 +19,18 @@ void assign_lineptr(char **lineptr, size_t *n, char *buffer, size_t b);
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 
 
+/** environ.c */
+char **_copyenv(void);
+void free_env(void);
+char **_getenv(const char *var);
+
 
 void sig_handler(int sig);
+
+/** str_function_1 .c */
+int _strlen(const char *s);
+char *_strncat(char *dest, const char *src, int n);
+char *_strcpy(char *dest, const char *src);
+char *_strcat(char *dest, const char *src);
 
 #endif
