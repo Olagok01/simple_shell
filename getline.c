@@ -17,7 +17,7 @@ void *_realloc(void *ptr, unsigned int prev_size, unsigned int new_size)
 {
 	void *memory;
 	char *src, *dest;
-	unsigned int idx;
+	unsigned int index;
 
 	if (new_size == prev_size)
 	{
@@ -46,9 +46,9 @@ void *_realloc(void *ptr, unsigned int prev_size, unsigned int new_size)
 	}
 	dest = memory;
 
-	for (idx = 0; idx < prev_size && idx < new_size; idx++)
+	for (index = 0; index < prev_size && index < new_size; index++)
 	{
-		dest[idx] = *src++;
+		dest[index] = *src++;
 	}
 	free(ptr);
 	return (memory);
@@ -97,7 +97,7 @@ void assign_lineptr(char **lineptr, size_t *n, char *buffer, size_t buf)
 
 
 /**
- * _getline - Afunction that reads input_size from a stream
+ * _getline - function that reads input_size from a stream
  * @lineptr: buf to store the input_size
  * @n: size of lineptr
  * @stream: stream to be read from
@@ -106,20 +106,25 @@ void assign_lineptr(char **lineptr, size_t *n, char *buffer, size_t buf)
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
 {
 	static ssize_t input_size;
-	ssize_t ret;
+	ssize_t result;
 	char c = 'x', *buf;
 	int read_f;
 
 	if (input_size == 0)
+	{
 		fflush(stream);
+	}
 	else
+	{
 		return (-1);
+	}
 	input_size = 0;
 
 	buf = malloc(sizeof(char) * 120);
 	if (!buf)
+	{
 		return (-1);
-
+	}
 	while (c != '\n')
 	{
 		read_f = read(STDIN_FILENO, &c, 1);
@@ -133,7 +138,6 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
 			input_size++;
 			break;
 		}
-
 		if (input_size >= 120)
 		{
 			buf = _realloc(buf, input_size, input_size + 1);
@@ -145,10 +149,10 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
 
 	assign_lineptr(lineptr, n, buf, input_size);
 
-	ret = input_size;
+	result = input_size;
 	if (read_f != 0)
 	{
 		input_size = 0;
 	}
-	return (ret);
+	return (result);
 }
