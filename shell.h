@@ -33,4 +33,13 @@ char *_strncat(char *dest, const char *src, int n);
 char *_strcpy(char *dest, const char *src);
 char *_strcat(char *dest, const char *src);
 
+
+/** str_fcuntion_2.c */
+char *_strchr(char *s, char c);
+int _strspn(char *s, char *accept);
+int _strcmp(char *s1, char *s2);
+int _strncmp(const char *s1, const char *s2, int n);
+
+
+
 #endif
