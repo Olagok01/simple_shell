@@ -14,9 +14,51 @@
 #define END_OF_FILE -2
 #define EXIT -3
 
+
+/* Global environemnt */
+extern char **environ;
+/* Global program name */
+char *name;
+/* Global history counter */
+int hist;
+
+
+/**
+ * struct list_s -  new struct type defining a linked list.
+ * @dir: directory path.
+ * @next: pointer to another struct list_s.
+ */
+typedef struct list_s
+{
+	char *dir;
+	struct list_s *next;
+} list_t;
+
+
+/**
+ * struct alias_s - A new struct defining aliases.
+ * @name: The name of the alias.
+ * @value: The value of the alias.
+ * @next: A pointer to another struct alias_s.
+ */
+typedef struct alias_s
+{
+	char *name;
+	char *value;
+	struct alias_s *next;
+} alias_t;
+
+
 void *_realloc(void *ptr, unsigned int prev_size, unsigned int new_size);
 void assign_lineptr(char **lineptr, size_t *n, char *buffer, size_t b);
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
+
+
+/** lnked list */
+alias_t *add_alias_end(alias_t **head, char *name, char *value);
+void free_alias_list(alias_t *head);
+list_t *add_node_end(list_t **head, char *dir);
+void free_list_link(list_t *head);
 
 
 /** environ.c */
