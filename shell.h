@@ -16,7 +16,7 @@
 
 
 /* Global environemnt */
-extern char **environ;
+extern char **environ_var;
 /* Global program name */
 char *name;
 /* Global history counter */
@@ -48,6 +48,8 @@ typedef struct alias_s
 	struct alias_s *next_node;
 } alias_t;
 
+/* Global aliases linked list */
+alias_t *aliases;
 
 void *_realloc(void *ptr, unsigned int prev_size, unsigned int new_size);
 void assign_lineptr(char **lineptr, size_t *n, char *buffer, size_t b);
@@ -61,7 +63,7 @@ list_t *add_node_end(list_t **head, char *dir);
 void free_list_link(list_t *head);
 
 
-/** environ.c */
+/** environ_var.c */
 char **_copyenv(void);
 void free_env(void);
 char **_getenv(const char *var);
