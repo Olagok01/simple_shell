@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
 
 	if (!isatty(STDIN_FILENO))
 	{
-		while (result != END_OF_FILE && ret != EXIT)
+		while (result != END_OF_FILE && result != EXIT)
 		{
 			result = handle_args(exit_ret);
 		}

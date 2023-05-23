@@ -55,6 +55,13 @@ void *_realloc(void *ptr, unsigned int prev_size, unsigned int new_size);
 void assign_lineptr(char **lineptr, size_t *n, char *buffer, size_t b);
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 
+void variable_replacement(char **args, int *exit_ret);
+
+/** input.c */
+char *get_args(char *line, int *exit_ret);
+int call_args(char **args, char **prev_args, int *exit_ret);
+int run_args(char **args, char **prev_args, int *exit_ret);
+int handle_args(int *exit_ret);
 
 /** lnked list */
 alias_t *add_alias_end(alias_t **head, char *name, char *value);
