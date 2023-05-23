@@ -22,7 +22,7 @@ alias_t *add_alias_end(alias_t **head, char *name, char *value)
 	{
 		return (NULL);
 	}
-	new_node->next = NULL;
+	new_node->next_node = NULL;
 	new_node->name = malloc(sizeof(char) * (_strlen(name) + 1));
 	if (!new_node->name)
 	{
@@ -35,11 +35,11 @@ alias_t *add_alias_end(alias_t **head, char *name, char *value)
 	if (*head)
 	{
 		last_node = *head;
-		while (last_node->next != NULL)
+		while (last_node->next_node != NULL)
 		{
-			last_node = last_node->next;
+			last_node = last_node->next_node;
 		}
-		last_node->next = new_node;
+		last_node->next_node = new_node;
 	}
 	else
 	{
@@ -65,14 +65,14 @@ list_t *add_node_end(list_t **head, char *dir)
 		return (NULL);
 
 	new_node->dir = dir;
-	new_node->next = NULL;
+	new_node->next_node = NULL;
 
 	if (*head)
 	{
 		last_node = *head;
-		while (last_node->next != NULL)
-			last_node = last_node->next;
-		last_node->next = new_node;
+		while (last_node->next_node != NULL)
+			last_node = last_node->next_node;
+		last_node->next_node = new_node;
 	}
 	else
 		*head = new_node;

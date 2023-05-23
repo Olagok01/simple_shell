@@ -31,7 +31,7 @@ int hist;
 typedef struct list_s
 {
 	char *dir;
-	struct list_s *next;
+	struct list_s *next_node;
 } list_t;
 
 
@@ -45,7 +45,7 @@ typedef struct alias_s
 {
 	char *name;
 	char *value;
-	struct alias_s *next;
+	struct alias_s *next_node;
 } alias_t;
 
 
