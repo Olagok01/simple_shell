@@ -4,6 +4,7 @@ char *get_args(char *line, int *exit_ret);
 int call_args(char **args, char **prev_args, int *exit_ret);
 int run_args(char **args, char **prev_args, int *exit_ret);
 int handle_args(int *exit_ret);
+int check_args(char **args);
 
 /**
  * get_args - function that gets a command from standard input
@@ -39,8 +40,8 @@ char *get_args(char *line, int *exit_ret)
 	}
 
 	line[read_file - 1] = '\0';
-	variable_replacement(&line, exit_ret);
-	handle_line(&line, read_file);
+	variable_replace(&line, exit_ret);
+	modify_line(&line, read_file);
 	return (line);
 }
 
@@ -59,7 +60,7 @@ int call_args(char **args, char **prev_args, int *exit_ret)
 	{
 		return (*exit_ret);
 	}
-	for (index = 0; args[i]; i++)
+	for (i = 0; args[i]; i++)
 	{
 		if (_strncmp(args[i], "||", 2) == 0)
 		{
@@ -86,7 +87,7 @@ int call_args(char **args, char **prev_args, int *exit_ret)
 			free(args[i]);
 			args[i] = NULL;
 			args = replace_aliases(args);
-			ret = run_args(args, prev_args, exit_ret);
+			result = run_args(args, prev_args, exit_ret);
 			if (*exit_ret == 0)
 			{
 				args = &args[++i];
@@ -181,7 +182,7 @@ int handle_args(int *exit_ret)
 		{
 			free(args[index]);
 			args[index] = NULL;
-			result = call_args(args, front, exit_ret);
+			result = call_args(args, prev_args, exit_ret);
 			args = &args[++index];
 			index = 0;
 		}
@@ -192,4 +193,35 @@ int handle_args(int *exit_ret)
 	}
 	free(prev_args);
 	return (result);
+}
+
+/**
+ * check_args - function that checks if there are
+ *	any leading ';', ';;', '&&', or '||'
+ * @args: 2D pointer to tokenized commands and arguments
+ * Return: If a ';', '&&', or '||' is placed at an invalid position - 2
+ *	Otherwise - 0
+ */
+int check_args(char **args)
+{
+	size_t index;
+	char *current, *next;
+
+	for (index = 0; args[index]; index++)
+	{
+		current = args[index];
+		if (current[0] == ';' || current[0] == '&' || current[0] == '|')
+		{
+			if (index == 0 || current[1] == ';')
+			{
+				return (create_error_msg(&args[index], 2));
+			}
+			next = args[index + 1];
+			if (next && (next[0] == ';' || next[0] == '&' || next[0] == '|'))
+			{
+				return (create_error_msg(&args[index + 1], 2));
+			}
+		}
+	}
+	return (0);
 }

@@ -62,6 +62,7 @@ char *get_args(char *line, int *exit_ret);
 int call_args(char **args, char **prev_args, int *exit_ret);
 int run_args(char **args, char **prev_args, int *exit_ret);
 int handle_args(int *exit_ret);
+int check_args(char **args);
 
 /** lnked list */
 alias_t *add_alias_end(alias_t **head, char *name, char *value);
@@ -69,6 +70,10 @@ void free_alias_list(alias_t *head);
 list_t *add_node_end(list_t **head, char *dir);
 void free_list_link(list_t *head);
 
+/** error_message.c */
+int num_length(int num);
+char *_itoa(int num);
+int create_error_msg(char **args, int err);
 
 /** environ_var.c */
 char **_copyenv(void);
@@ -77,6 +82,16 @@ char **_getenv(const char *var);
 
 
 void sig_handler(int sig);
+
+/** helper_1.c and helper_2.c */
+void free_args(char **args, char **prev_args);
+char *get_process_id(void);
+char *get_env_value(char *env_var, int len);
+void variable_replace(char **args, int *exit_ret);
+void modify_line(char **line, ssize_t read);
+ssize_t calculate_new_len(char *line);
+void log_operators(char *line, ssize_t *new_length);
+
 
 /** str_function_1 .c */
 int _strlen(const char *s);

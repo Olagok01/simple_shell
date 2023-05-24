@@ -81,7 +81,7 @@ int process_file(char *file_path, int *exit_ret)
 		_strcat(line, buffer);
 		old_size = line_size;
 	} while (read_file);
-	for (i = 0; line[index] == '\n'; index++)
+	for (index = 0; line[index] == '\n'; index++)
 		line[index] = ' ';
 	for (; index < line_size; index++)
 	{
@@ -95,7 +95,7 @@ int process_file(char *file_path, int *exit_ret)
 		}
 	}
 	variable_replacement(&line, exit_ret);
-	handle_line(&line, line_size);
+	modify_line(&line, line_size);
 	args = _strtok(line, " ");
 	free(line);
 	if (!args)
