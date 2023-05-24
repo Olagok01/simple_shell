@@ -16,8 +16,8 @@
 
 
 extern char **environ_var;
-char *name;
-int hist;
+extern char *name;
+extern int hist;
 
 
 /**
@@ -45,7 +45,7 @@ typedef struct alias_s
 	struct alias_s *next_node;
 } alias_t;
 
-alias_t *aliases;
+extern alias_t *aliases;
 
 
 
