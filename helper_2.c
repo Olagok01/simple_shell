@@ -137,7 +137,7 @@ ssize_t calculate_new_len(char *line)
 					new_length += 2;
 					continue;
 				}
-				else if (line[index- 1] == ';' && next != ' ')
+				else if (line[index - 1] == ';' && next != ' ')
 				{
 					new_length += 2;
 					continue;

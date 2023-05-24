@@ -5,7 +5,7 @@ char *_itoa(int num);
 int create_error_msg(char **args, int err);
 
 /**
- * num_len - function that counts the digit length of a number
+ * num_length - function that counts the digit length of a number
  * @num: number to measure
  * Return: the digit length
  */

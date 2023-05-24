@@ -3,10 +3,11 @@
 alias_t *add_alias_end(alias_t **head, char *name, char *value);
 void free_alias_list(alias_t *head);
 list_t *add_node_end(list_t **head, char *dir);
-void free_list(list_t *head);
+void free_list_link(list_t *head);
 
 /**
- * add_alias_end - function that adds a node to the end of a alias_t linked list.
+ * add_alias_end - function that adds a node to the
+ *	end of a alias_t linked list.
  * @head: pointer to the head of the list_t list.
  * @name: the name of the new alias to be added.
  * @value: the value of the new alias to be added.

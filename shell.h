@@ -131,6 +131,19 @@ void set_alias(char *var_name, char *value);
 void print_alias(alias_t *alias);
 char **replace_aliases(char **args);
 
+
+
+char *get_location(char *command);
+char *fill_path_dir(char *path);
+list_t *get_path_dir(char *path);
+
+
+
+int (*get_builtin(char *command))(char **args, char **prev_args);
+int shell_exit(char **args, char **prev_args)
+int shell_cd(char **args, char __attribute__((__unused__)) **prev_args)
+
+
 int cant_open_file(char *file_path);
 int process_file(char *file_path, int *exit_ret);
 
