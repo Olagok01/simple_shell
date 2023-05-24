@@ -71,11 +71,11 @@ int call_args(char **args, char **prev_args, int *exit_ret)
 			if (*exit_ret != 0)
 			{
 				args = &args[++i];
-				index = 0;
+				i = 0;
 			}
 			else
 			{
-				for (index++; args[i]; i++)
+				for (i++; args[i]; i++)
 				{
 					free(args[i]);
 				}
@@ -133,7 +133,7 @@ int run_args(char **args, char **prev_args, int *exit_ret)
 	}
 	else
 	{
-		*exit_ret = execute(args, prev_args);
+		*exit_ret = execute_cmd(args, prev_args);
 		result = *exit_ret;
 	}
 	hist++;

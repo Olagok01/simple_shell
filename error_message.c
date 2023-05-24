@@ -83,30 +83,30 @@ int create_error_msg(char **args, int err)
 	switch (err)
 	{
 	case -1:
-		error = error_env(args);
+		error = error_env_msg(args);
 		break;
 	case 1:
-		error = error_1(args);
+		error = error_1_msg(args);
 		break;
 	case 2:
 		if (*(args[0]) == 'e')
 		{
-			error = error_2_exit(++args);
+			error = error_exit_msg(++args);
 		}
 		else if (args[0][0] == ';' || args[0][0] == '&' || args[0][0] == '|')
 		{
-			error = error_2_syntax(args);
+			error = error_syntax_msg(args);
 		}
 		else
 		{
-			error = error_2_cd(args);
+			error = error_cd_msg(args);
 		}
 		break;
 	case 126:
-		error = error_126(args);
+		error = error_126_msg(args);
 		break;
 	case 127:
-		error = error_127(args);
+		error = error_127_msg(args);
 		break;
 	}
 	write(STDERR_FILENO, error, _strlen(error));

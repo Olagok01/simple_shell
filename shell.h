@@ -15,18 +15,15 @@
 #define EXIT -3
 
 
-/* Global environemnt */
 extern char **environ_var;
-/* Global program name */
 char *name;
-/* Global history counter */
 int hist;
 
 
 /**
  * struct list_s -  new struct type defining a linked list.
  * @dir: directory path.
- * @next: pointer to another struct list_s.
+ * @next_node: pointer to another struct list_s.
  */
 typedef struct list_s
 {
@@ -39,7 +36,7 @@ typedef struct list_s
  * struct alias_s - A new struct defining aliases.
  * @name: The name of the alias.
  * @value: The value of the alias.
- * @next: A pointer to another struct alias_s.
+ * @next_node: A pointer to another struct alias_s.
  */
 typedef struct alias_s
 {
@@ -48,8 +45,14 @@ typedef struct alias_s
 	struct alias_s *next_node;
 } alias_t;
 
-/* Global aliases linked list */
 alias_t *aliases;
+
+
+
+void sig_handler(int sig);
+int execute_cmd(char **args, char **prev_args);
+
+
 
 void *_realloc(void *ptr, unsigned int prev_size, unsigned int new_size);
 void assign_lineptr(char **lineptr, size_t *n, char *buffer, size_t b);
@@ -106,6 +109,29 @@ int _strspn(char *s, char *accept);
 int _strcmp(char *s1, char *s2);
 int _strncmp(const char *s1, const char *s2, int n);
 
+/** error_msg_1 */
+char *error_env_msg(char **args);
+char *error_1_msg(char **args);
+char *error_exit_msg(char **args);
+char *error_cd_msg(char **args);
+char *error_syntax_msg(char **args);
 
+/** error_msg_1 */
+char *error_126_msg(char **args);
+char *error_127_msg(char **args);
+
+/** split_token */
+int token_len(char *str, char *delim);
+int count_tokens(char *str, char *delim);
+char **_strtok(char *line, char *delim);
+
+/**alias_builtin */
+int shellby_alias(char **args, char __attribute__((__unused__)) **prev_args);
+void set_alias(char *var_name, char *value);
+void print_alias(alias_t *alias);
+char **replace_aliases(char **args);
+
+int cant_open_file(char *file_path);
+int process_file(char *file_path, int *exit_ret);
 
 #endif

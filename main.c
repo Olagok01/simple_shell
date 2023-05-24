@@ -1,7 +1,7 @@
 #include "shell.h"
 
 void sig_handler(int sig);
-int execute(char **args, char **front);
+int execute_cmd(char **args, char **prev_args);
 
 /**
  * sig_handler - Prints a new prompt upon a signal.
@@ -15,6 +15,75 @@ void sig_handler(int sig)
 	signal(SIGINT, sig_handler);
 	write(STDIN_FILENO, new_prompt, 3);
 }
+
+
+/**
+ * execute_cmd - function that executes a command in a child process
+ * @args: array of arguments
+ * @prev_args: double pointer to the beginning of args
+ * Return: If an error occurs - a corresponding error code
+ *	O/w - The exit value of the last executed command
+ */
+int execute_cmd(char **args, char **prev_args)
+{
+	pid_t child_pid;
+	int status, flag = 0, result = 0;
+	char *command = args[0];
+
+	if (command[0] != '/' && command[0] != '.')
+	{
+		flag = 1;
+		command = get_location(command);
+	}
+
+	if (!command || (access(command, F_OK) == -1))
+	{
+		if (errno == EACCES)
+		{
+			result = (create_error_msg(args, 126));
+		}
+		else
+		{
+			result = (create_error_msg(args, 127));
+		}
+	}
+	else
+	{
+		child_pid = fork();
+		if (child_pid == -1)
+		{
+			if (flag)
+			{
+				free(command);
+			}
+			perror("Error child:");
+			return (1);
+		}
+		if (child_pid == 0)
+		{
+			execve(command, args, environ_var);
+			if (errno == EACCES)
+			{
+				result = (create_error_msg(args, 126));
+			}
+			free_env();
+			free_args(args, prev_args);
+			free_alias_list(aliases);
+			_exit(result);
+		}
+		else
+		{
+			wait(&status);
+			result = WEXITSTATUS(status);
+		}
+	}
+	if (flag)
+	{
+		free(command);
+	}
+	return (result);
+}
+
 
 /**
  * main - Function that uns a simple UNIX command interpreter
