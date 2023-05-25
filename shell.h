@@ -15,9 +15,7 @@
 #define EXIT -3
 
 
-/** extern char **environ_var; */
-/** extern char *name; */
-/** extern int hist; */
+extern char **environ_var;
 
 /**
  * struct list_s -  new struct type defining a linked list.
@@ -55,7 +53,6 @@ typedef struct alias_s
 	struct alias_s *next_node;
 } alias_t;
 
-/** extern alias_t *aliases;*/
 
 void sig_handler(int sig);
 int execute_cmd(char **args, char **prev_args);
@@ -106,7 +103,7 @@ void log_operators(char *line, ssize_t *new_length);
 
 /** str_function_1 .c */
 int _strlen(const char *s);
-char *_strncat(char *dest, const char *src, int n);
+char *_strncat(char *dest, const char *src, size_t n);
 char *_strcpy(char *dest, const char *src);
 char *_strcat(char *dest, const char *src);
 
@@ -115,7 +112,7 @@ char *_strcat(char *dest, const char *src);
 char *_strchr(char *s, char c);
 int _strspn(char *s, char *accept);
 int _strcmp(char *s1, char *s2);
-int _strncmp(const char *s1, const char *s2, int n);
+int _strncmp(const char *s1, const char *s2, size_t n);
 
 /** error_msg_1 */
 char *error_env_msg(char **args);

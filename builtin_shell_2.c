@@ -1,4 +1,5 @@
 #include "shell.h"
+extern char **environ;
 
 int shell_env(char **args, char __attribute__((__unused__)) **prev_args);
 int shell_setenv(char **args, char __attribute__((__unused__)) **prev_args);
@@ -16,17 +17,16 @@ int shell_unsetenv(char **args, char __attribute__((__unused__)) **prev_args);
  */
 int shell_env(char **args, char __attribute__((__unused__)) **prev_args)
 {
-	char **environ_var = NULL;
 	int i;
 	char nc = '\n';
 
-	if (!environ_var)
+	if (!environ)
 	{
 		return (-1);
 	}
-	for (i = 0; environ_var[i]; i++)
+	for (i = 0; environ[i]; i++)
 	{
-		write(STDOUT_FILENO, environ_var[i], _strlen(environ_var[i]));
+		write(STDOUT_FILENO, environ[i], _strlen(environ[i]));
 		write(STDOUT_FILENO, &nc, 1);
 	}
 
@@ -47,7 +47,7 @@ int shell_env(char **args, char __attribute__((__unused__)) **prev_args)
  */
 int shell_setenv(char **args, char __attribute__((__unused__)) **prev_args)
 {
-	char **environ_var = NULL;
+	char **environ_var = environ;
 	char **env_var = NULL, **new_env, *new_val;
 	size_t size;
 	int index;
