@@ -15,6 +15,7 @@ int check_args(char **args);
  */
 char *get_args(char *line, int *exit_ret)
 {
+	int hist = 0;
 	size_t n = 0;
 	ssize_t read_file;
 	char *prompt = "$ ";
@@ -118,6 +119,7 @@ int call_args(char **args, char **prev_args, int *exit_ret)
  */
 int run_args(char **args, char **prev_args, int *exit_ret)
 {
+	int hist = 0;
 	int result, index;
 	int (*builtin)(char **args, char **prev_args);
 

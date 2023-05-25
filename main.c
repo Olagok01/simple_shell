@@ -26,6 +26,8 @@ void sig_handler(int sig)
  */
 int execute_cmd(char **args, char **prev_args)
 {
+	char **environ_var = NULL;
+	alias_t *aliases = NULL;
 	pid_t child_pid;
 	int status, flag = 0, result = 0;
 	char *command = args[0];
@@ -93,12 +95,14 @@ int execute_cmd(char **args, char **prev_args)
  */
 int main(int argc, char *argv[])
 {
+	alias_t *aliases;
 	int result = 0, ret_end;
 	int *exit_ret = &ret_end;
+	char **environ_var = NULL;
 	char *prompt = "$ ", *new_line = "\n";
-
-	name = argv[0];
-	hist = 1;
+	
+	/**name = argv[0]; */
+	/**hist = 1;*/
 	aliases = NULL;
 	signal(SIGINT, sig_handler);
 

@@ -15,10 +15,9 @@
 #define EXIT -3
 
 
-extern char **environ_var;
-extern char *name;
-extern int hist;
-
+/** extern char **environ_var; */
+/** extern char *name; */
+/** extern int hist; */
 
 /**
  * struct list_s -  new struct type defining a linked list.
@@ -56,9 +55,7 @@ typedef struct alias_s
 	struct alias_s *next_node;
 } alias_t;
 
-extern alias_t *aliases;
-
-
+/** extern alias_t *aliases;*/
 
 void sig_handler(int sig);
 int execute_cmd(char **args, char **prev_args);
@@ -157,6 +154,16 @@ int (*get_builtin(char *command))(char **args, char **prev_args);
 int shell_exit(char **args, char **prev_args);
 int shell_cd(char **args, char __attribute__((__unused__)) **prev_args);
 
+/** help_shell.c */
+void shell_help_all(void);
+void shell_help_alias(void);
+void shell_help_cd(void);
+void shell_help_exit(void);
+void shell_help_help(void);
+
+void shell_help_env(void);
+void shell_help_setenv(void);
+void shell_help_unsetenv(void);
 
 int cant_open_file(char *file_path);
 int process_file(char *file_path, int *exit_ret);

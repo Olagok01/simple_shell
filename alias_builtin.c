@@ -1,21 +1,21 @@
 #include "shell.h"
 
-
-int shellby_alias(char **args, char __attribute__((__unused__)) **prev_args);
+int shell_alias(char **args, char __attribute__((__unused__)) **prev_args);
 void set_alias(char *var_name, char *value);
 void print_alias(alias_t *alias);
 char **replace_aliases(char **args);
 
 /**
- * shellby_alias - Builtin command that either prints all aliases, specific
+ * shell_alias - Builtin command that either prints all aliases, specific
  * aliases, or sets an alias.
  * @args: array of arguments.
  * @prev_args: double pointer to the beginning of args.
  * Return: If an error occurs - -1.
  *	Otherwise - 0.
  */
-int shellby_alias(char **args, char __attribute__((__unused__)) **prev_args)
+int shell_alias(char **args, char __attribute__((__unused__)) **prev_args)
 {
+	alias_t *aliases = NULL;
 	alias_t *temp = aliases;
 	int index, result = 0;
 	char *value;
@@ -57,13 +57,15 @@ int shellby_alias(char **args, char __attribute__((__unused__)) **prev_args)
 
 
 /**
- * set_alias - Will either set an existing alias 'name' with a new value,
+ * set_alias - function that will either set an existing
+ *	alias 'name' with a new value,
  * 'value' or creates a new alias with 'name' and 'value'
  * @var_name: the name of the alias
  * @value: Value of the alias. First character is a '='
  */
 void set_alias(char *var_name, char *value)
 {
+	alias_t *aliases = NULL;
 	alias_t *temp = aliases;
 	int length, j, k;
 	char *new_val;
@@ -124,13 +126,14 @@ void print_alias(alias_t *alias)
 
 
 /**
- * replace_aliases - Goes through the arguments and replace any matching alias
- * with their value.
- * @args: a 2D pointer to the arguments.
- * Return: a 2D pointer to the arguments.
+ * replace_aliases - goes through the arguments and replace any matching alias
+ * with their value
+ * @args: 2D pointer to the arguments
+ * Return: 2D pointer to the arguments
  */
 char **replace_aliases(char **args)
 {
+	alias_t *aliases = NULL;
 	alias_t *temp;
 	int index;
 	char *new_val;
@@ -161,6 +164,5 @@ char **replace_aliases(char **args)
 			temp = temp->next_node;
 		}
 	}
-
 	return (args);
 }

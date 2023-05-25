@@ -1,6 +1,5 @@
 #include "shell.h"
 
-
 int (*get_builtin(char *command))(char **args, char **prev_args);
 int shell_exit(char **args, char **prev_args);
 int shell_cd(char **args, char __attribute__((__unused__)) **prev_args);
@@ -47,6 +46,7 @@ int (*get_builtin(char *command))(char **args, char **prev_args)
  */
 int shell_exit(char **args, char **prev_args)
 {
+	alias_t *aliases = NULL;
 	int index, len_of_int = 10;
 	unsigned int num = 0, max = 1 << (sizeof(int) * 8 - 1);
 
@@ -171,22 +171,23 @@ int shell_cd(char **args, char __attribute__((__unused__)) **prev_args)
  */
 int shell_help(char **args, char __attribute__((__unused__)) **prev_args)
 {
+	char *name = NULL;
 	if (!args[0])
-		help_all();
+		shell_help_all();
 	else if (_strcmp(args[0], "alias") == 0)
-		help_alias();
+		shell_help_alias();
 	else if (_strcmp(args[0], "cd") == 0)
-		help_cd();
+		shell_help_cd();
 	else if (_strcmp(args[0], "exit") == 0)
-		help_exit();
+		shell_help_exit();
 	else if (_strcmp(args[0], "env") == 0)
-		help_env();
+		shell_help_env();
 	else if (_strcmp(args[0], "setenv") == 0)
-		help_setenv();
+		shell_help_setenv();
 	else if (_strcmp(args[0], "unsetenv") == 0)
-		help_unsetenv();
+		shell_help_unsetenv();
 	else if (_strcmp(args[0], "help") == 0)
-		help_help();
+		shell_help_help();
 	else
 		write(STDERR_FILENO, name, _strlen(name));
 

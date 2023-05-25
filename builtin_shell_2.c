@@ -16,6 +16,7 @@ int shell_unsetenv(char **args, char __attribute__((__unused__)) **prev_args);
  */
 int shell_env(char **args, char __attribute__((__unused__)) **prev_args)
 {
+	char **environ_var = NULL;
 	int i;
 	char nc = '\n';
 
@@ -46,6 +47,7 @@ int shell_env(char **args, char __attribute__((__unused__)) **prev_args)
  */
 int shell_setenv(char **args, char __attribute__((__unused__)) **prev_args)
 {
+	char **environ_var = NULL;
 	char **env_var = NULL, **new_env, *new_val;
 	size_t size;
 	int index;
@@ -104,6 +106,7 @@ int shell_setenv(char **args, char __attribute__((__unused__)) **prev_args)
  */
 int shell_unsetenv(char **args, char __attribute__((__unused__)) **prev_args)
 {
+	char **environ_var = NULL;
 	char **env_var, **new_env;
 	size_t size;
 	int index, index2;

@@ -1,5 +1,6 @@
 #include "shell.h"
 
+
 char *error_env_msg(char **args);
 char *error_1_msg(char **args);
 char *error_exit_msg(char **args);
@@ -13,6 +14,8 @@ char *error_syntax_msg(char **args);
  */
 char *error_env_msg(char **args)
 {
+	int hist = 0;
+	char *name = NULL;
 	char *error, *hist_str;
 	int length;
 
@@ -48,6 +51,7 @@ char *error_env_msg(char **args)
  */
 char *error_1_msg(char **args)
 {
+	char *name = NULL;
 	char *error;
 	int length;
 
@@ -72,6 +76,8 @@ char *error_1_msg(char **args)
  */
 char *error_exit_msg(char **args)
 {
+	int hist = 0;
+	char *name = NULL;
 	char *error, *hist_str;
 	int length;
 
@@ -105,6 +111,8 @@ char *error_exit_msg(char **args)
  */
 char *error_cd_msg(char **args)
 {
+	int hist = 0;
+	char *name = NULL;
 	char *error, *hist_str;
 	int length;
 
@@ -150,6 +158,8 @@ char *error_cd_msg(char **args)
  */
 char *error_syntax_msg(char **args)
 {
+	int hist = 0;
+	char *name = NULL;
 	char *error, *hist_str;
 	int length;
 
@@ -176,4 +186,3 @@ char *error_syntax_msg(char **args)
 	free(hist_str);
 	return (error);
 }
-
