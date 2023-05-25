@@ -4,7 +4,7 @@
 int (*get_builtin(char *command))(char **args, char **prev_args);
 int shell_exit(char **args, char **prev_args);
 int shell_cd(char **args, char __attribute__((__unused__)) **prev_args);
-
+int shell_help(char **args, char __attribute__((__unused__)) **prev_args);
 
 
 /**
@@ -162,3 +162,33 @@ int shell_cd(char **args, char __attribute__((__unused__)) **prev_args)
 	return (0);
 }
 
+/**
+ * shell_help - Displays information about shellby builtin commands.
+ * @args: array of arguments.
+ * @prev_args: pointer to the beginning of args.
+ * Return: If an error occurs - -1.
+ *	Otherwise - 0.
+ */
+int shell_help(char **args, char __attribute__((__unused__)) **prev_args)
+{
+	if (!args[0])
+		help_all();
+	else if (_strcmp(args[0], "alias") == 0)
+		help_alias();
+	else if (_strcmp(args[0], "cd") == 0)
+		help_cd();
+	else if (_strcmp(args[0], "exit") == 0)
+		help_exit();
+	else if (_strcmp(args[0], "env") == 0)
+		help_env();
+	else if (_strcmp(args[0], "setenv") == 0)
+		help_setenv();
+	else if (_strcmp(args[0], "unsetenv") == 0)
+		help_unsetenv();
+	else if (_strcmp(args[0], "help") == 0)
+		help_help();
+	else
+		write(STDERR_FILENO, name, _strlen(name));
+
+	return (0);
+}

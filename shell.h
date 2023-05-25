@@ -137,12 +137,15 @@ int count_tokens(char *str, char *delim);
 char **_strtok(char *line, char *delim);
 
 /**alias_builtin */
-int shellby_alias(char **args, char __attribute__((__unused__)) **prev_args);
+int shell_alias(char **args, char __attribute__((__unused__)) **prev_args);
 void set_alias(char *var_name, char *value);
 void print_alias(alias_t *alias);
 char **replace_aliases(char **args);
 
-
+int shell_help(char **args, char __attribute__((__unused__)) **prev_args);
+int shell_env(char **args, char __attribute__((__unused__)) **prev_args);
+int shell_setenv(char **args, char __attribute__((__unused__)) **prev_args);
+int shell_unsetenv(char **args, char __attribute__((__unused__)) **prev_args);
 
 char *get_location(char *command);
 char *fill_path_dir(char *path);

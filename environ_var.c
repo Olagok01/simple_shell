@@ -15,7 +15,7 @@ char **_copyenv(void)
 	size_t size;
 	int i;
 
-	for (size = 0; new_environ[size]; size++)
+	for (size = 0; environ_var[size]; size++)
 		;
 
 	new_environ = malloc(sizeof(char *) * (size + 1));
