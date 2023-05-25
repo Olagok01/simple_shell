@@ -31,6 +31,17 @@ typedef struct list_s
 	struct list_s *next_node;
 } list_t;
 
+/**
+ * struct builtin_s - A new struct type defining builtin commands.
+ * @name: The name of the builtin command.
+ * @f: A function pointer to the builtin command's function.
+ */
+typedef struct builtin_s
+{
+	char *name;
+	int (*f)(char **argv, char **prev_args);
+} builtin_t;
+
 
 /**
  * struct alias_s - A new struct defining aliases.
@@ -140,8 +151,8 @@ list_t *get_path_dir(char *path);
 
 
 int (*get_builtin(char *command))(char **args, char **prev_args);
-int shell_exit(char **args, char **prev_args)
-int shell_cd(char **args, char __attribute__((__unused__)) **prev_args)
+int shell_exit(char **args, char **prev_args);
+int shell_cd(char **args, char __attribute__((__unused__)) **prev_args);
 
 
 int cant_open_file(char *file_path);
