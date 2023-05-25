@@ -24,7 +24,7 @@ char *error_env_msg(char **args)
 	{
 		return (NULL);
 	}
-	args--;
+
 	length = _strlen(name) + _strlen(hist_str) + _strlen(args[0]) + 45;
 	error = malloc(sizeof(char) * (length + 1));
 	if (!error)

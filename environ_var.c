@@ -49,13 +49,14 @@ char **_copyenv(void)
 void free_env(void)
 {
 	extern char **environ;
+	char **environ_var = environ;
 	int index;
 
-	for (index = 0; environ[index]; index++)
+	for (index = 0; environ_var[index]; index++)
 	{
-		free(environ[index]);
+		free(environ_var[index]);
 	}
-	free(environ);
+	free(environ_var);
 }
 
 
@@ -68,14 +69,15 @@ void free_env(void)
 char **_getenv(const char *var)
 {
 	extern char **environ;
+	char **environ_var = environ;
 	int i, length;
 
 	length = _strlen(var);
-	for (i = 0; environ[i]; i++)
+	for (i = 0; environ_var[i]; i++)
 	{
-		if (_strncmp(var, environ[i], length) == 0)
+		if (_strncmp(var, environ_var[i], length) == 0)
 		{
-			return (&environ[i]);
+			return (&environ_var[i]);
 		}
 	}
 	return (NULL);
