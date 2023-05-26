@@ -95,13 +95,12 @@ int execute_cmd(char **args, char **prev_args)
  */
 int main(int argc, char *argv[])
 {
-	extern char **environ;
 	alias_t *aliases;
 	int result = 0, ret_end;
 	int *exit_ret = &ret_end;
-	char **environ_var = environ;
+	char **environ_var = NULL;
 	char *prompt = "$ ", *new_line = "\n";
-	
+
 	/**name = argv[0]; */
 	/**hist = 1;*/
 	aliases = NULL;

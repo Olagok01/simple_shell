@@ -1,5 +1,5 @@
-#ifndef _SHELL_H
-#define _SHELL_H
+#ifndef SHELL_H
+#define SHELL_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -14,8 +14,8 @@
 #define END_OF_FILE -2
 #define EXIT -3
 
+extern char **environ;
 
-extern char **environ_var;
 
 /**
  * struct list_s -  new struct type defining a linked list.
