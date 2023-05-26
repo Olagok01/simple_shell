@@ -1,17 +1,17 @@
 #include "shell.h"
 
-void shell_help_all(void);
-void shell_help_alias(void);
-void shell_help_cd(void);
-void shell_help_exit(void);
-void shell_help_help(void);
+void help_all(void);
+void help_alias(void);
+void help_cd(void);
+void help_exit(void);
+void help_help(void);
 
 /**
- * shell_help_all - function that displays all possible builtin shell commands.
+ * help_all - Displays all possible builtin shellby commands.
  */
-void shell_help_all(void)
+void help_all(void)
 {
-	char *msg = "Shell\nThese shell commands are defined internally.\n";
+	char *msg = "Shellby\nThese shell commands are defined internally.\n";
 
 	write(STDOUT_FILENO, msg, _strlen(msg));
 	msg = "Type 'help' to see this list.\nType 'help name' to find ";
@@ -29,10 +29,9 @@ void shell_help_all(void)
 }
 
 /**
- * shell_help_alias - function that displays information
- *	on the shell builtin command 'alias'.
+ * help_alias - Displays information on the shellby builtin command 'alias'.
  */
-void shell_help_alias(void)
+void help_alias(void)
 {
 	char *msg = "alias: alias [NAME[='VALUE'] ...]\n\tHandles aliases.\n";
 
@@ -52,10 +51,9 @@ void shell_help_alias(void)
 }
 
 /**
- * shell_help_cd - function that displays information
- *	on the shell builtin command 'cd'.
+ * help_cd - Displays information on the shellby builtin command 'cd'.
  */
-void shell_help_cd(void)
+void help_cd(void)
 {
 	char *msg = "cd: cd [DIRECTORY]\n\tChanges the current directory of the";
 
@@ -73,10 +71,9 @@ void shell_help_cd(void)
 }
 
 /**
- * shell_help_exit - function that displays information
- *	on the shell builtin command 'exit'.
+ * help_exit - Displays information on the shellby builtin command 'exit'.
  */
-void shell_help_exit(void)
+void help_exit(void)
 {
 	char *msg = "exit: exit [STATUS]\n\tExits the shell.\n\n\tThe ";
 
@@ -90,12 +87,11 @@ void shell_help_exit(void)
 }
 
 /**
- * shell_help_help - function that displays information
- *	on the shell builtin command 'help'.
+ * help_help - Displays information on the shellby builtin command 'help'.
  */
-void shell_help_help(void)
+void help_help(void)
 {
-	char *msg = "help: help\n\tSee all possible Shell builtin commands.\n";
+	char *msg = "help: help\n\tSee all possible Shellby builtin commands.\n";
 
 	write(STDOUT_FILENO, msg, _strlen(msg));
 	msg = "\n      help [BUILTIN NAME]\n\tSee specific information on each ";

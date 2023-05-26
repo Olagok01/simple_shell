@@ -1,15 +1,14 @@
 #include "shell.h"
 
-void shell_help_env(void);
-void shell_help_setenv(void);
-void shell_help_unsetenv(void);
-
+void help_env(void);
+void help_setenv(void);
+void help_unsetenv(void);
+void help_history(void);
 
 /**
- * shell_help_env - function that displays information on the
- *	shell builtin command 'env'.
+ * help_env - Displays information on the shellby builtin command 'env'.
  */
-void shell_help_env(void)
+void help_env(void)
 {
 	char *msg = "env: env\n\tPrints the current environment.\n";
 
@@ -17,10 +16,9 @@ void shell_help_env(void)
 }
 
 /**
- * shell_help_setenv - function that displays information on the
- *	shell builtin command 'setenv'.
+ * help_setenv - Displays information on the shellby builtin command 'setenv'.
  */
-void shell_help_setenv(void)
+void help_setenv(void)
 {
 	char *msg = "setenv: setenv [VARIABLE] [VALUE]\n\tInitializes a new";
 
@@ -32,11 +30,10 @@ void shell_help_setenv(void)
 }
 
 /**
- * shell_help_unsetenv - function that displays information on the
- *	shell builtin command
+ * help_unsetenv - Displays information on the shellby builtin command
  * 'unsetenv'.
  */
-void shell_help_unsetenv(void)
+void help_unsetenv(void)
 {
 	char *msg = "unsetenv: unsetenv [VARIABLE]\n\tRemoves an ";
 
