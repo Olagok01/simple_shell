@@ -15,7 +15,6 @@ char **replace_aliases(char **args);
  */
 int shell_alias(char **args, char __attribute__((__unused__)) **prev_args)
 {
-	alias_t *aliases = NULL;
 	alias_t *temp = aliases;
 	int index, result = 0;
 	char *value;
@@ -65,7 +64,6 @@ int shell_alias(char **args, char __attribute__((__unused__)) **prev_args)
  */
 void set_alias(char *var_name, char *value)
 {
-	alias_t *aliases = NULL;
 	alias_t *temp = aliases;
 	int length, j, k;
 	char *new_val;
@@ -133,7 +131,6 @@ void print_alias(alias_t *alias)
  */
 char **replace_aliases(char **args)
 {
-	alias_t *aliases = NULL;
 	alias_t *temp;
 	int index;
 	char *new_val;

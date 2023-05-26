@@ -12,8 +12,6 @@ int process_file(char *file_path, int *exit_ret);
 
 int cant_open_file(char *file_path)
 {
-	int hist = 0;
-	char *name = NULL;
 	char *error, *hist_str;
 	int length;
 
@@ -61,7 +59,6 @@ int process_file(char *file_path, int *exit_ret)
 	char buffer[120];
 	int result;
 
-	/**hist = 0;*/
 	file = open(file_path, O_RDONLY);
 	if (file == -1)
 	{

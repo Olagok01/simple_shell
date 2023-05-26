@@ -7,10 +7,10 @@ int shell_help(char **args, char __attribute__((__unused__)) **prev_args);
 
 
 /**
- * get_builtin - Matches a command with a corresponding
- *	shellby builtin function.
- * @command: The command to match.
- * Return: A function pointer to the corresponding builtin.
+ * get_builtin - function that matches a command with a
+ *	corresponding shellby builtin function
+ * @command: command to match
+ * Return: function pointer to the corresponding builtin
  */
 int (*get_builtin(char *command))(char **args, char **prev_args)
 {
@@ -46,7 +46,6 @@ int (*get_builtin(char *command))(char **args, char **prev_args)
  */
 int shell_exit(char **args, char **prev_args)
 {
-	alias_t *aliases = NULL;
 	int index, len_of_int = 10;
 	unsigned int num = 0, max = 1 << (sizeof(int) * 8 - 1);
 
@@ -82,9 +81,10 @@ int shell_exit(char **args, char **prev_args)
 
 
 /**
- * shell_cd - Changes the current directory of the shellby process.
- * @args: An array of arguments.
- * @prev_args: A double pointer to the beginning of args.
+ * shell_cd - function changes the current directory of
+ *	 the shell process
+ * @args: array of arguments.
+ * @prev_args: double pointer to the beginning of args.
  * Return: If the given string is not a directory - 2.
  *	If an error occurs - -1.
  *	Otherwise - 0.
@@ -163,15 +163,15 @@ int shell_cd(char **args, char __attribute__((__unused__)) **prev_args)
 }
 
 /**
- * shell_help - Displays information about shellby builtin commands.
- * @args: array of arguments.
- * @prev_args: pointer to the beginning of args.
- * Return: If an error occurs - -1.
- *	Otherwise - 0.
+ * shell_help - function that displays information about shell
+ *	builtin commands.
+ * @args: array of arguments
+ * @prev_args: pointer to the beginning of args
+ * Return: If an error occurs - -1
+ *	Otherwise - 0
  */
 int shell_help(char **args, char __attribute__((__unused__)) **prev_args)
 {
-	char *name = NULL;
 	if (!args[0])
 		shell_help_all();
 	else if (_strcmp(args[0], "alias") == 0)
