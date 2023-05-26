@@ -114,7 +114,7 @@ char *get_env_value(char *env_var, int len)
 void variable_replace(char **line, int *exit_ret)
 {
 	int j, k = 0, length;
-	char *replacement = NULL, *old_line = NULL, *new_line;
+	char *result = NULL, *old_line = NULL, *new_line;
 
 	old_line = *line;
 	for (j = 0; old_line[j]; j++)
@@ -124,12 +124,12 @@ void variable_replace(char **line, int *exit_ret)
 		{
 			if (old_line[j + 1] == '$')
 			{
-				replacement = get_process_id();
+				result = get_process_id();
 				k = j + 2;
 			}
 			else if (old_line[j + 1] == '?')
 			{
-				replacement = _itoa(*exit_ret);
+				result = _itoa(*exit_ret);
 				k = j + 2;
 			}
 			else if (old_line[j + 1])
@@ -139,9 +139,9 @@ void variable_replace(char **line, int *exit_ret)
 						old_line[k] != ' '; k++)
 					;
 				length = k - (j + 1);
-				replacement = get_env_value(&old_line[j + 1], length);
+				result = get_env_value(&old_line[j + 1], length);
 			}
-			new_line = malloc(j + _strlen(replacement)
+			new_line = malloc(j + _strlen(result)
 					  + _strlen(&old_line[k]) + 1);
 			if (!line)
 			{
@@ -149,11 +149,11 @@ void variable_replace(char **line, int *exit_ret)
 			}
 			new_line[0] = '\0';
 			_strncat(new_line, old_line, j);
-			if (replacement)
+			if (result)
 			{
-				_strcat(new_line, replacement);
-				free(replacement);
-				replacement = NULL;
+				_strcat(new_line, result);
+				free(result);
+				result = NULL;
 			}
 			_strcat(new_line, &old_line[k]);
 			free(old_line);

@@ -11,8 +11,6 @@ char *error_127_msg(char **args);
  */
 char *error_126_msg(char **args)
 {
-	int hist = 0;
-	char *name = NULL;
 	char *error, *hist_str;
 	int length;
 
@@ -49,8 +47,6 @@ char *error_126_msg(char **args)
  */
 char *error_127_msg(char **args)
 {
-	int hist = 0;
-	char *name = NULL;
 	char *error, *hist_str;
 	int length;
 
